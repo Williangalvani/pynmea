@@ -1,8 +1,6 @@
 import re
 from pynmea.utils import checksum_calc
 
-print "batata"
-
 class NMEASentence(object):
     """ Base sentence class. This is used to pull apart a sentence.
         It will not have any real reference to what things mean. Things that
@@ -250,9 +248,9 @@ class GPGGA(NMEASentence):
     def __init__(self):
         parse_map = (
             ('Timestamp', 'timestamp'),
-            ('Latitude', 'lat'),
+            ('Latitude', 'latitude'),
             ('Latitude Direction', 'lat_direction'),
-            ('Longitude', 'lon'),
+            ('Longitude', 'longitude'),
             ('Longitude Direction', 'lon_direction'),
             ('GPS Quality Indicator', 'gps_qual'),
             ('Number of Satellites in use', 'num_sats'),
@@ -266,14 +264,6 @@ class GPGGA(NMEASentence):
             #('Checksum', 'checksum'))
 
         super(GPGGA, self).__init__(parse_map)
-
-    @property
-    def latitude(self):
-        return fixlonlat(float(self.lat))
-
-    @property
-    def longitude(self):
-        return fixlonlat(float(self.lon))
 
 
 class GPBWW(NMEASentence):
@@ -376,12 +366,11 @@ class GPGLL(NMEASentence):
         return mapping[self.lon_dir.upper()]
 
 def fixlonlat(number):
-    print "batata2"
     number/=100.0
     high = int(number)
-    low = number-high
+    low = numer-high
     low/=60.0
-    return high+low*100
+    return high+low
 
 class GPGSA(NMEASentence):
     def __init__(self):
