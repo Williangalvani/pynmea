@@ -1,7 +1,6 @@
 import re
 from pynmea.utils import checksum_calc
 
-print "batata"
 
 class NMEASentence(object):
     """ Base sentence class. This is used to pull apart a sentence.
@@ -376,7 +375,6 @@ class GPGLL(NMEASentence):
         return mapping[self.lon_dir.upper()]
 
 def fixlonlat(number):
-    print "batata2"
     number/=100.0
     high = int(number)
     low = number-high
